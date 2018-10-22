@@ -10,9 +10,6 @@ function init() {
 	camera.position.z = 500;
 
 	scene = new THREE.Scene();
-
-	mesh = new THREE.Mesh( geometry, material );
-	scene.add( mesh );
 	
 	var loader = new THREE.OBJLoader();	
 	loader.load( './key.obj', function (object) {
@@ -26,13 +23,13 @@ function init() {
 	renderer.setSize(window.innerWidth, window.innerHeight * 0.5);
 	renderer.setClearColor(0x000000, 0);
 	document.getElementById("canvas").appendChild( renderer.domElement );
-
 }
 
 function animate() {
 	requestAnimationFrame(animate);
 
-	key.rotation.y += 0.01;
+	if (key !== undefined)
+		key.rotation.y += 0.01;
 	
 	renderer.render(scene, camera);
 }
